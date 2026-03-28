@@ -6,5 +6,5 @@ spring:
 
 whatsapp:
  api:
-  url: "https://graph.facebook.com/v22.0/1051150478080385/messages"
-  token: "EAAWvgSyfWmEBRBM4n38dqWc1xeU4862K1M0j5y6WAOoZBRUiAyGm6HC04aqSewUjQdhtVqfv5Yqs90Upjr4vQbBnZAT0AeZAMHeI7NwuCYZBvQxptEzhN1K8r1ZCFB28IHZBFbJkNWvqBG0PClVEpGNjJYb2Knsx8FQSNQca3LsvNSpvAUFKauLkCLwCqVsowmpn4UcLj6Hk5xQg9OToTiD52MXLjb5gESiMflCsf30rAcaNv2nh626S3ZCXTVZBntbFBM8DO8VfGCset5XSKHUE"
+  url: "https://graph.facebook.com/v22.0/${PHONE_NUMBER_ID}/messages"
+  token: ${WHATSAPP_TOKEN}

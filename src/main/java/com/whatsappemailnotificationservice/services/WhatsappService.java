@@ -150,7 +150,6 @@ public class WhatsappService {
                     .bodyToMono(String.class)
                     .block();
         } catch (WebClientResponseException ex) {
-            // Log and return the response body to help debugging (Facebook returns detailed error JSON)
             log.error("WhatsApp API returned status {}: {}", ex.getStatusCode(), ex.getResponseBodyAsString());
             return ex.getResponseBodyAsString();
         } catch (Exception ex) {
