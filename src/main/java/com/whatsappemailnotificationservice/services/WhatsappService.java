@@ -137,7 +137,7 @@ public class WhatsappService {
         map.put("cation",caption);
         body.put("messaging_product", "whatsapp");
         body.put("to", toNumber);
-        body.put("type", map);
+        body.put("image", map);
 
 
         try {
