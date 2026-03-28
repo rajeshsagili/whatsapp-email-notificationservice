@@ -21,7 +21,7 @@ public class WhatsappService {
 
     // phone-number-id (the one used in the endpoint). Keep this as config in production.
     @Value("${whatsapp.api.url}")
-    private  String url ;
+    private  String whatsAppurl ;
 
     // store only the token value here (without the "Bearer " prefix)
     @Value("${whatsapp.api.token}")
@@ -48,7 +48,7 @@ public class WhatsappService {
 
         try {
             return webClient.post()
-                    .uri(url)
+                    .uri(whatsAppurl)
                     .header("Authorization", "Bearer " + bearerToken)
                     .header("Content-Type", "application/json")
                     .bodyValue(body)
@@ -82,7 +82,7 @@ public class WhatsappService {
 
         try {
             return webClient.post()
-                    .uri(url)
+                    .uri(whatsAppurl)
                     .header("Authorization", "Bearer " + bearerToken)
                     .header("Content-Type", "application/json")
                     .bodyValue(body)
@@ -131,18 +131,18 @@ public class WhatsappService {
 
     public String sendGenerateMessage(String toNumber, String url , String caption) {
         Map<String, Object> body = new HashMap<>();
-
-        Map<String,Object> map = new HashMap<>();
-        map.put("link", url);
-        map.put("cation",caption);
         body.put("messaging_product", "whatsapp");
         body.put("to", toNumber);
-        body.put("image", map);
+        body.put("type", "image");
+        Map<String, String> image = new HashMap<>();
+        image.put("link", url);
+        image.put("caption", caption);
+        body.put("image", image);
 
 
         try {
             return webClient.post()
-                    .uri(url)
+                    .uri(whatsAppurl)
                     .header("Authorization", "Bearer " + bearerToken)
                     .header("Content-Type", "application/json")
                     .bodyValue(body)
