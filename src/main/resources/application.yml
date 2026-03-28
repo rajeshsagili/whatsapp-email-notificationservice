@@ -1,6 +1,8 @@
 spring:
  application:
   name: "swhatsappemailnotificationservice"
+  server:
+   port: 8080
 
 whatsapp:
  api:
