@@ -1,3 +1,4 @@
+/*
 package com.whatsappemailnotificationservice.entities;
 
 import jakarta.persistence.Entity;
@@ -7,3 +8,4 @@ import jakarta.persistence.Table;
 @Table(name = "employee")
 public class Employee {
 }
+*/

@@ -1,3 +1,8 @@
 spring:
  application:
   name: "swhatsappemailnotificationservice"
+
+whatsapp:
+ api:
+  url: "https://graph.facebook.com/v22.0/1051150478080385/messages"
+  token: "EAAWvgSyfWmEBRPVLxINVQeZA8cA2U516aRCNeZBzuN1ZAXZCfTWH8sdc5AeZAtFjtbHzyGZAHYLsjNh0IXBqPZAveZCVg9eGYqcOOvZBAK0PWzjEZChwZAEn19y35qzIuHzF5MTLXE41TZAmHgDINeeOpRQZCCsIvBd5RM8ZAqVuRyOZAJED4e0yI8qGZAooMhYtFea1E7215Tj9ZBjNcCuZBIx2lordEG9NJla1O9cpRYTXardq5TZACLdO9YfQwiaRjZAG6OzgmvDCzU7gKZCDhGUo77dl8ZCODg"
