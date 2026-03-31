@@ -1,7 +1,6 @@
 package com.whatsappemailnotificationservice.services;
 
 import com.whatsappemailnotificationservice.dto.Person;
-import com.whatsappemailnotificationservice.dto.WhatsAppRequest;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -164,7 +163,7 @@ public class WhatsappService {
 
         Map<String, Object> param2 = Map.of(
                 "type", "text",
-                "text", "Union Bank"
+                "text", "Union"
         );
 
         Map<String, Object> bodyComponent = new HashMap<>();
