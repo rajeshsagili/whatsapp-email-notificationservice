@@ -1,6 +1,7 @@
 package com.whatsappemailnotificationservice.controller;
 
 
+import com.whatsappemailnotificationservice.dto.Person;
 import com.whatsappemailnotificationservice.dto.WhatsAppRequest;
 import com.whatsappemailnotificationservice.services.WhatsappService;
 import lombok.RequiredArgsConstructor;
@@ -30,10 +31,10 @@ public class WhatsappController {
     public List<String> send(@RequestBody WhatsAppRequest whatsAppRequest) throws Exception {
         List<String> responses = new ArrayList<>();
         for (var user : whatsAppRequest.getUsers()) {
-            String type = user.getType();
+            String type = user.getWishType();
             String encodedName = URLEncoder.encode(user.getName(), StandardCharsets.UTF_8);
             String url = "https://whatsapp-email-notificationservice.onrender.com/api/greeting?name="+encodedName+"&type="+type;
-            String response = whatsappService.sendGenerateMessage(user.getNumber(), url, whatsAppRequest.getCaption());
+            String response = whatsappService.sendGenerateMessage(user,url );
            responses.add(response);
         }
         return responses;

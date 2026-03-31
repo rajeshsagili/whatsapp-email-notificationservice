@@ -1,5 +1,7 @@
 package com.whatsappemailnotificationservice.services;
 
+import com.whatsappemailnotificationservice.dto.Person;
+import com.whatsappemailnotificationservice.dto.WhatsAppRequest;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -129,17 +132,48 @@ public class WhatsappService {
         return result.toString();
     }
 
-    public String sendGenerateMessage(String toNumber, String url , String caption) {
+    public String sendGenerateMessage(Person person, String url) {
         Map<String, Object> body = new HashMap<>();
         body.put("messaging_product", "whatsapp");
-        body.put("to", toNumber);
-        body.put("type", "image");
-        Map<String, String> image = new HashMap<>();
-        image.put("link", url);
-        image.put("caption", caption);
-        body.put("image", image);
+        body.put("to", person.getNumber());
+        body.put("type", "template");
 
+        String templateName = "employee_birthday_wish";
+        if ("anniversary".equalsIgnoreCase(person.getWishType())) {
+            templateName = "employee_anniversary_wish";
+        }
 
+        Map<String, Object> template = new HashMap<>();
+        template.put("name", templateName);
+        template.put("language", Map.of("code", "en"));
+
+        Map<String, Object> image = Map.of("link", url);
+
+        Map<String, Object> headerParam = new HashMap<>();
+        headerParam.put("type", "image");
+        headerParam.put("image", image);
+
+        Map<String, Object> header = new HashMap<>();
+        header.put("type", "header");
+        header.put("parameters", List.of(headerParam));
+
+        Map<String, Object> param1 = Map.of(
+                "type", "text",
+                "text", person.getName()
+        );
+
+        Map<String, Object> param2 = Map.of(
+                "type", "text",
+                "text", "Union Bank"
+        );
+
+        Map<String, Object> bodyComponent = new HashMap<>();
+        bodyComponent.put("type", "body");
+
+        bodyComponent.put("parameters", List.of(param1, param2));
+        template.put("components", List.of(header, bodyComponent));
+
+        body.put("template", template);
         try {
             return webClient.post()
                     .uri(whatsAppurl)

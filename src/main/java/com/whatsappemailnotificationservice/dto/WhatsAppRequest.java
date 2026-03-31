@@ -8,6 +8,4 @@ import java.util.List;
 public class WhatsAppRequest {
 
     private List<Person> users;
-
-    private String caption;
 }
